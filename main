@@ -1,0 +1,65 @@
+#include <iostream>
+#include <time.h>
+
+using namespace std;
+
+// recursive factorial function
+long long recursiveFactorial(long long n) 
+{
+    if (n == 0)
+    {
+        return 1;
+    }
+    else 
+    {
+        return n * recursiveFactorial(n-1);
+    }
+}
+
+// non-recursive factorial function
+long long nonRecursiveFactorial(long long n) 
+{
+    long long result = 1;
+    for (long long i = 1; i <= n; i++) 
+    {
+        result *= i;
+    }
+    return result;
+}
+
+int main()
+{
+    long long inputValue;
+    long long recursiveResult, nonRecursiveResult;
+    clock_t start, end;
+    double recursiveTime, nonRecursiveTime;
+
+    while (true) 
+    {
+        // get input value from user
+        cout << "Enter a value to compute factorial: ";
+        cin >> inputValue;
+
+        // get time before recursive function call
+        start = clock();
+        recursiveResult = recursiveFactorial(inputValue);
+      
+        // get time after recursive function call
+        end = clock();
+        recursiveTime = (double)(end - start) / CLOCKS_PER_SEC;
+
+        // get time before non-recursive function call
+        start = clock();
+        nonRecursiveResult = nonRecursiveFactorial(inputValue);
+      
+        // get time after non-recursive function call
+        end = clock();
+        nonRecursiveTime = (double)(end - start) / CLOCKS_PER_SEC;
+
+        // print results
+        cout << "Recursive result: " << recursiveResult << " Time taken: " << recursiveTime << endl;
+        cout << "Non-recursive result: " << nonRecursiveResult << " Time taken: " << nonRecursiveTime << endl;
+    }
+
+    return 0;
+}
